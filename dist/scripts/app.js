@@ -1,7 +1,9 @@
 (function() {
     function config($stateProvider, $locationProvider) {
+
+      console.log("app loaded");
         $locationProvider
-            .html5Model({
+            .html5Mode({
                 enabled: true,
                 requireBase: false
             });
@@ -20,6 +22,9 @@
                 templateUrl: '/templates/collection.html'
             });
   }
+
+  console.log("success!");
+
   angular
       .module('musicJams', ['ui.router'])
       .config(config);
