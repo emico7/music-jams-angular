@@ -19,12 +19,11 @@
             })
             .state('collection', {
                 url: '/collection',
+                controller: 'LandingCtrl as landing',
                 templateUrl: '/templates/collection.html'
             });
   }
-
-  console.log("success!");
-
+  
   angular
       .module('musicJams', ['ui.router'])
       .config(config);
