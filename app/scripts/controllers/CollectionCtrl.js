@@ -5,7 +5,7 @@
             this.albums.push(angular.copy(albumPicasso));
         }
     }
-
+    
     angular
         .module('musicJams')
         .controller('CollectionCtrl', CollectionCtrl);
