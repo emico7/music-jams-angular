@@ -15,8 +15,7 @@
         // @param {Object} song
         var setSong = function(song) {
             if (currentBuzzObject) {
-                currentBuzzObject.stop();
-                SongPlayer.currentSong.playing = null;
+                stopSong(SongPlayer.currentSong);
             }
 
             currentBuzzObject = new buzz.sound(song.audioUrl, {
@@ -28,11 +27,19 @@
         };
 
         // @function playSong
-        // @desc Start playing song and song state to indicate that it is currently playing
+        // @desc Starts playing song and sets song state to currently playing
         // @param {Object} song
         var playSong = function(song) {
             currentBuzzObject.play();
             song.playing = true;
+        };
+
+        // @function stopSong
+        // @desc Stops playing song and sets song state to not playing
+        // @param {Object} song
+        var stopSong = function(song) {
+            currentBuzzObject.stop();
+            song.playing = null;
         };
 
         // @function getSongIndex
@@ -67,14 +74,27 @@
 
         // @function previous
         // @desc Decreases current song index by one
-        // @param {Object} song
         SongPlayer.previous = function() {
             var currentSongIndex = getSongIndex(SongPlayer.currentSong);
             currentSongIndex--;
 
             if (currentSongIndex < 0) {
-                currentBuzzObject.stop();
-                SongPlayer.currentSong.playing = null;
+                stopSong(SongPlayer.currentSong);
+            } else {
+                var song = currentAlbum.songs[currentSongIndex];
+                setSong(song);
+                playSong(song);
+            }
+        };
+
+        // @function next
+        // @desc Increases current song index by one
+        SongPlayer.next = function() {
+            var currentSongIndex = getSongIndex(SongPlayer.currentSong);
+            currentSongIndex++;
+
+            if (currentSongIndex >= currentAlbum.songs.length) {
+                stopSong(SongPlayer.currentSong);
             } else {
                 var song = currentAlbum.songs[currentSongIndex];
                 setSong(song);
