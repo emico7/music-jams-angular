@@ -13,6 +13,7 @@
         // @function setSong
         // @desc Stops currently playing song and loads new audio file as currentBuzzObject
         // @param {Object} song
+
         var setSong = function(song) {
             if (currentBuzzObject) {
                 stopSong(SongPlayer.currentSong);
@@ -45,7 +46,6 @@
         // @function getSongIndex
         // @desc Finds the index of active song
         // @param {Object} song
-
         var getSongIndex = function(song) {
             return currentAlbum.songs.indexOf(song);
         };
