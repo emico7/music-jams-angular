@@ -1,7 +1,6 @@
 (function() {
     function config($stateProvider, $locationProvider) {
 
-      console.log("app loaded");
         $locationProvider
             .html5Mode({
                 enabled: true,
